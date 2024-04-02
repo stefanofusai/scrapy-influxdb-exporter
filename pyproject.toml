@@ -11,6 +11,10 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["influxdb3-python", "scrapy"]
 
+[project.urls]
+Homepage = "https://github.com/stefanofusai/scrapy-influxdb-exporter"
+Repository = "https://github.com/stefanofusai/scrapy-influxdb-exporter"
+
 [tool.mypy]
 python_version = "3.11"
 strict = true
