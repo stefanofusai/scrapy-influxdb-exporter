@@ -1,0 +1,53 @@
+from datetime import datetime
+
+from influxdb_client_3 import InfluxDBClient3, Point
+from scrapy import Spider
+from scrapy.crawler import Crawler
+from scrapy.settings import Settings
+from scrapy.statscollectors import StatsCollector, StatsT
+
+
+class InfluxDBStatsCollector(StatsCollector):
+    def __init__(self, crawler: Crawler) -> None:
+        super().__init__(crawler)
+
+        self.init_client(crawler.settings)
+
+    def init_client(self, settings: Settings) -> None:
+        influxdb_host = settings.get("INFLUXDB_HOST")
+
+        if influxdb_host is None:
+            raise ValueError("INFLUXDB_HOST setting is required")
+
+        influxdb_org = settings.get("INFLUXDB_ORG")
+
+        if influxdb_org is None:
+            raise ValueError("INFLUXDB_ORG setting is required")
+
+        influxdb_token = settings.get("INFLUXDB_TOKEN")
+
+        if influxdb_token is None:
+            raise ValueError("INFLUXDB_TOKEN setting is required")
+
+        influxdb_database = settings.get("INFLUXDB_DATABASE")
+
+        if influxdb_database is None:
+            raise ValueError("INFLUXDB_DATABASE setting is required")
+
+        self.client = InfluxDBClient3(
+            host=influxdb_host,
+            org=influxdb_org,
+            database=influxdb_database,
+            token=influxdb_token,
+        )
+
+    def _persist_stats(self, stats: StatsT, spider: Spider) -> None:
+        point = Point("spider_stats").tag("spider_name", spider.name)
+
+        for key, value in stats.items():
+            if isinstance(value, datetime):
+                value = value.timestamp()  # noqa: PLW2901
+
+            point = point.field(key, value)
+
+        self.client.write(point)
