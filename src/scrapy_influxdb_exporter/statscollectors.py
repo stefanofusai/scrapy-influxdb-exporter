@@ -16,6 +16,11 @@ class InfluxDBStatsCollector(StatsCollector):
         self.init_client(crawler.settings)
 
     def init_client(self, settings: Settings) -> None:
+        influxdb_database = settings.get("INFLUXDB_DATABASE")
+
+        if influxdb_database is None:
+            raise SettingMissingError("INFLUXDB_DATABASE")
+
         influxdb_host = settings.get("INFLUXDB_HOST")
 
         if influxdb_host is None:
@@ -30,11 +35,6 @@ class InfluxDBStatsCollector(StatsCollector):
 
         if influxdb_token is None:
             raise SettingMissingError("INFLUXDB_TOKEN")
-
-        influxdb_database = settings.get("INFLUXDB_DATABASE")
-
-        if influxdb_database is None:
-            raise SettingMissingError("INFLUXDB_DATABASE")
 
         self.client = InfluxDBClient3(
             host=influxdb_host,
