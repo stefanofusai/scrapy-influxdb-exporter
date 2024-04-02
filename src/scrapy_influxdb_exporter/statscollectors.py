@@ -6,6 +6,8 @@ from scrapy.crawler import Crawler
 from scrapy.settings import Settings
 from scrapy.statscollectors import StatsCollector, StatsT
 
+from .exceptions import SettingMissingError
+
 
 class InfluxDBStatsCollector(StatsCollector):
     def __init__(self, crawler: Crawler) -> None:
@@ -17,22 +19,22 @@ class InfluxDBStatsCollector(StatsCollector):
         influxdb_host = settings.get("INFLUXDB_HOST")
 
         if influxdb_host is None:
-            raise ValueError("INFLUXDB_HOST setting is required")
+            raise SettingMissingError("INFLUXDB_HOST")
 
         influxdb_org = settings.get("INFLUXDB_ORG")
 
         if influxdb_org is None:
-            raise ValueError("INFLUXDB_ORG setting is required")
+            raise SettingMissingError("INFLUXDB_ORG")
 
         influxdb_token = settings.get("INFLUXDB_TOKEN")
 
         if influxdb_token is None:
-            raise ValueError("INFLUXDB_TOKEN setting is required")
+            raise SettingMissingError("INFLUXDB_TOKEN")
 
         influxdb_database = settings.get("INFLUXDB_DATABASE")
 
         if influxdb_database is None:
-            raise ValueError("INFLUXDB_DATABASE setting is required")
+            raise SettingMissingError("INFLUXDB_DATABASE")
 
         self.client = InfluxDBClient3(
             host=influxdb_host,
