@@ -13,9 +13,9 @@ class InfluxDBStatsCollector(StatsCollector):
     def __init__(self, crawler: Crawler) -> None:
         super().__init__(crawler)
 
-        self.init_client(crawler.settings)
+        self._init_client(crawler.settings)
 
-    def init_client(self, settings: Settings) -> None:
+    def _init_client(self, settings: Settings) -> None:
         influxdb_database = settings.get("INFLUXDB_DATABASE")
 
         if influxdb_database is None:
