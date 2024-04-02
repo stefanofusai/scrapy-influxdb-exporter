@@ -1,4 +1,4 @@
-name: Upload Python Package
+name: Publish package to PyPI
 
 on:
   release:
@@ -8,8 +8,13 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
+
+    environment: release
+
+    permissions:
+      id-token: write
 
     strategy:
       matrix:
@@ -34,6 +39,3 @@ jobs:
       
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@release/v1.8
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
