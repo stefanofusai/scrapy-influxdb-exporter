@@ -22,5 +22,5 @@ This project was inspired by [scrapy-prometheus-exporter](https://github.com/ran
 ## Contributing
 Contributions are welcome! To get started, please refer to our [contribution guidelines](https://github.com/stefanofusai/scrapy-influxdb-exporter/blob/main/CONTRIBUTING.md).
 
-## Issues
+## Issues
 If you encounter any problems while using this package, please open a new issue [here](https://github.com/stefanofusai/scrapy-influxdb-exporter/issues).
