@@ -13,35 +13,42 @@ class InfluxDBStatsCollector(StatsCollector):
     def __init__(self, crawler: Crawler) -> None:
         super().__init__(crawler)
 
-        self._init_client(crawler.settings)
+        self._parse_settings(crawler.settings)
+        self._init_client()
 
-    def _init_client(self, settings: Settings) -> None:
+    def _init_client(self) -> None:
+        self.client = InfluxDBClient3(
+            host=self.influxdb_host,
+            org=self.influxdb_org,
+            database=self.influxdb_database,
+            token=self.influxdb_token,
+        )
+
+    def _parse_settings(self, settings: Settings) -> None:
         influxdb_database = settings.get("INFLUXDB_DATABASE")
 
         if influxdb_database is None:
             raise SettingMissingError("INFLUXDB_DATABASE")
 
+        self.influxdb_database = influxdb_database
         influxdb_host = settings.get("INFLUXDB_HOST")
 
         if influxdb_host is None:
             raise SettingMissingError("INFLUXDB_HOST")
 
+        self.influxdb_host = influxdb_host
         influxdb_org = settings.get("INFLUXDB_ORG")
 
         if influxdb_org is None:
             raise SettingMissingError("INFLUXDB_ORG")
 
+        self.influxdb_org = influxdb_org
         influxdb_token = settings.get("INFLUXDB_TOKEN")
 
         if influxdb_token is None:
             raise SettingMissingError("INFLUXDB_TOKEN")
 
-        self.client = InfluxDBClient3(
-            host=influxdb_host,
-            org=influxdb_org,
-            database=influxdb_database,
-            token=influxdb_token,
-        )
+        self.influxdb_token = influxdb_token
 
     def _persist_stats(self, stats: StatsT, spider: Spider) -> None:
         point = Point("spider_stats").tag("spider_name", spider.name)
