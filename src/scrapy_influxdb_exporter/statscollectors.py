@@ -31,18 +31,28 @@ class InfluxDBStatsCollector(StatsCollector):
             raise SettingMissingError("INFLUXDB_DATABASE")
 
         self.influxdb_database = influxdb_database
+
         influxdb_host = settings.get("INFLUXDB_HOST")
 
         if influxdb_host is None:
             raise SettingMissingError("INFLUXDB_HOST")
 
         self.influxdb_host = influxdb_host
+
+        influxdb_measurement_name = settings.get("INFLUXDB_MEASUREMENT_NAME")
+
+        if influxdb_measurement_name is None:
+            raise SettingMissingError("INFLUXDB_MEASUREMENT_NAME")
+
+        self.influxdb_measurement_name = influxdb_measurement_name
+
         influxdb_org = settings.get("INFLUXDB_ORG")
 
         if influxdb_org is None:
             raise SettingMissingError("INFLUXDB_ORG")
 
         self.influxdb_org = influxdb_org
+
         influxdb_token = settings.get("INFLUXDB_TOKEN")
 
         if influxdb_token is None:
@@ -51,7 +61,7 @@ class InfluxDBStatsCollector(StatsCollector):
         self.influxdb_token = influxdb_token
 
     def _persist_stats(self, stats: StatsT, spider: Spider) -> None:
-        point = Point("spider_stats").tag("spider_name", spider.name)
+        point = Point(self.influxdb_measurement_name).tag("spider_name", spider.name)
 
         for key, value in stats.items():
             if isinstance(value, datetime):
