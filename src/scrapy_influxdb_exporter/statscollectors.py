@@ -32,15 +32,6 @@ class InfluxDBStatsCollector(StatsCollector):
 
         self._init_client()
 
-    def _init_client(self) -> None:
-        """Initialize the InfluxDB client."""
-        self.client = InfluxDBClient3(
-            host=self.influxdb_host,
-            org=self.influxdb_org,
-            database=self.influxdb_database,
-            token=self.influxdb_token,
-        )
-
     def _get_setting(self, name: str) -> str:
         """Get a setting from the crawler settings.
 
@@ -56,6 +47,15 @@ class InfluxDBStatsCollector(StatsCollector):
             raise SettingMissingError(name)
 
         return setting
+
+    def _init_client(self) -> None:
+        """Initialize the InfluxDB client."""
+        self.client = InfluxDBClient3(
+            host=self.influxdb_host,
+            org=self.influxdb_org,
+            database=self.influxdb_database,
+            token=self.influxdb_token,
+        )
 
     def _persist_stats(self, stats: StatsT, spider: Spider) -> None:
         """Persist the spider stats to InfluxDB.
