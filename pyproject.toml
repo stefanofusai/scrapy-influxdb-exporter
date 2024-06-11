@@ -59,4 +59,3 @@ select = [
     "UP",
     "W",
 ]
-ignore = ["D1", "TRY003"]
