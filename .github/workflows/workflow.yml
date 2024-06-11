@@ -21,6 +21,7 @@ jobs:
         uses: chartboost/ruff-action@v1
 
   publish-to-pypi:
+    needs: run-linter
     runs-on: ubuntu-latest
 
     environment: release
