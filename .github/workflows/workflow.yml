@@ -1,6 +1,8 @@
-name: Publish package to PyPI
+name: CI/CD Pipeline
 
 on:
+  push:
+  pull_request:
   release:
     types: [published]
 
