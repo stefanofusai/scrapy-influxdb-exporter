@@ -5,7 +5,7 @@ from scrapy import Spider
 from scrapy.crawler import Crawler
 from scrapy.statscollectors import StatsCollector, StatsT
 
-from .exceptions import SettingMissingError
+from .exceptions import MissingSettingError
 
 
 class InfluxDBStatsCollector(StatsCollector):
@@ -37,14 +37,14 @@ class InfluxDBStatsCollector(StatsCollector):
 
         :param name: The name of the setting.
         :type name: str
-        :raises SettingMissingError: If the setting is missing.
+        :raises MissingSettingError: If the setting is missing.
         :return: The value of the setting.
         :rtype: str
         """
         setting = self.crawler.settings.get(name)
 
         if setting is None:
-            raise SettingMissingError(name)
+            raise MissingSettingError(name)
 
         return setting
 
