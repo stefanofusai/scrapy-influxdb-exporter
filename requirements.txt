@@ -39,7 +39,7 @@ idna==3.6
     #   tldextract
 incremental==22.10.0
     # via twisted
-influxdb3-python==0.6.0
+influxdb3-python==0.6.1
     # via -r requirements.in
 itemadapter==0.8.0
     # via
