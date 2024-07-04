@@ -1,3 +1,4 @@
 influxdb3-python
 pre-commit
+ruff
 scrapy
