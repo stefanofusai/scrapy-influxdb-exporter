@@ -109,17 +109,12 @@ requests==2.32.3
     #   tldextract
 requests-file==2.1.0
     # via tldextract
-ruff==0.5.0
+ruff==0.5.1
     # via -r requirements.in
 scrapy==2.11.2
     # via -r requirements.in
 service-identity==24.1.0
     # via scrapy
-setuptools==70.2.0
-    # via
-    #   influxdb3-python
-    #   scrapy
-    #   zope-interface
 six==1.16.0
     # via
     #   automat
