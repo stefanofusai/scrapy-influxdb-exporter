@@ -47,7 +47,7 @@ idna==3.7
     #   tldextract
 incremental==22.10.0
     # via twisted
-influxdb3-python==0.6.1
+influxdb3-python==0.7.0
     # via -r requirements.in
 itemadapter==0.9.0
     # via
@@ -109,7 +109,7 @@ requests==2.32.3
     #   tldextract
 requests-file==2.1.0
     # via tldextract
-ruff==0.5.1
+ruff==0.5.4
     # via -r requirements.in
 scrapy==2.11.2
     # via -r requirements.in
