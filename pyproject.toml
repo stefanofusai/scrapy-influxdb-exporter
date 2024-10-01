@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "scrapy-influxdb-exporter"
 version = "1.2.0"
 authors = [{ "name" = "Stefano Fusai", "email" = "stefanofusai@gmail.com" }]
-description = "A simple package to export Scrapy spider stats to InfluxDB"
+description = "Export Scrapy spider stats to InfluxDB."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["influxdb3-python", "scrapy"]
