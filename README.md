@@ -1,6 +1,6 @@
 # scrapy-influxdb-exporter
 
-A simple package to export Scrapy spider stats to InfluxDB.
+Export Scrapy spider stats to InfluxDB.
 
 ## Installation
 
