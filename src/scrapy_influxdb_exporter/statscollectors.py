@@ -9,14 +9,16 @@ from .exceptions import MissingSettingError
 
 
 class InfluxDBStatsCollector(StatsCollector):
-    """A scrapy stats collector that persists stats to InfluxDB.
+    """
+    A scrapy stats collector that persists stats to InfluxDB.
 
     :param StatsCollector: The base class for stats collectors.
     :type StatsCollector: class
     """
 
     def __init__(self, crawler: Crawler) -> None:
-        """Construct an instance of the InfluxDBStatsCollector class.
+        """
+        Construct an instance of the InfluxDBStatsCollector class.
 
         :param crawler: The crawler instance.
         :type crawler: Crawler
@@ -33,7 +35,8 @@ class InfluxDBStatsCollector(StatsCollector):
         self._init_client()
 
     def _get_setting(self, name: str) -> str:
-        """Get a setting from the crawler settings.
+        """
+        Get a setting from the crawler settings.
 
         :param name: The name of the setting.
         :type name: str
@@ -58,7 +61,8 @@ class InfluxDBStatsCollector(StatsCollector):
         )
 
     def _persist_stats(self, stats: StatsT, spider: Spider) -> None:
-        """Persist the spider stats to InfluxDB.
+        """
+        Persist the spider stats to InfluxDB.
 
         :param stats: The spider stats.
         :type stats: StatsT
