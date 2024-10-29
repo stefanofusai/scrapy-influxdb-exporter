@@ -21,6 +21,12 @@ INFLUXDB_TOKEN = ...
 STATS_CLASS = "scrapy_influxdb_exporter.InfluxDBStatsCollector"
 ```
 
+## Development
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Acknowledgments
 
 This project was inspired by [scrapy-prometheus-exporter](https://github.com/rangertaha/scrapy-prometheus-exporter) by [@rangertaha](https://github.com/rangertaha) and [this article](https://mikulskibartosz.name/how-to-monitor-scrapy-spiders-using-influxdb-and-grafana) by [@mikulskibartosz](https://github.com/mikulskibartosz).
