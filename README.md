@@ -25,6 +25,8 @@ STATS_CLASS = "scrapy_influxdb_exporter.InfluxDBStatsCollector"
 
 ```bash
 pip install -r requirements.txt
+pre-commit install --install-hooks
+pre-commit install --hook-type commit-msg
 ```
 
 ## Acknowledgments
