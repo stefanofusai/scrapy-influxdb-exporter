@@ -1,6 +1,6 @@
 [project]
 name = "scrapy-influxdb-exporter"
-version = "1.3.0"
+version = "1.3.1"
 description = "Export Scrapy spider stats to InfluxDB."
 readme = "README.md"
 authors = [
@@ -25,12 +25,13 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 development = [
+    "mypy==1.13.0",
     "pre-commit==4.0.1",
     "ruff==0.8.2",
 ]
 
 [tool.mypy]
-python_version = "3.12"
+ignore_missing_imports = true
 strict = true
 
 [tool.ruff.lint]
