@@ -44,7 +44,7 @@ class InfluxDBStatsCollector(StatsCollector):
         :return: The value of the setting.
         :rtype: str
         """
-        setting = self.crawler.settings.get(name)
+        setting: str = self.crawler.settings.get(name)
 
         if setting is None:
             raise MissingSettingError(name)
@@ -53,7 +53,7 @@ class InfluxDBStatsCollector(StatsCollector):
 
     def _init_client(self) -> None:
         """Initialize the InfluxDB client."""
-        self.client = InfluxDBClient3(
+        self.client = InfluxDBClient3(  # type: ignore[no-untyped-call]
             host=self.influxdb_host,
             org=self.influxdb_org,
             database=self.influxdb_database,
@@ -69,7 +69,7 @@ class InfluxDBStatsCollector(StatsCollector):
         :param spider: The spider instance to which the stats belong.
         :type spider: Spider
         """
-        point = Point(self.influxdb_measurement_name).tag("spider_name", spider.name)
+        point = Point(self.influxdb_measurement_name).tag("spider_name", spider.name)  # type: ignore[no-untyped-call]
 
         for key, value in stats.items():
             if isinstance(value, datetime):
@@ -77,4 +77,4 @@ class InfluxDBStatsCollector(StatsCollector):
 
             point = point.field(key, value)
 
-        self.client.write(point)
+        self.client.write(point)  # type: ignore[no-untyped-call]
