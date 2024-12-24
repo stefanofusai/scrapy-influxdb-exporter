@@ -1,6 +1,6 @@
 [project]
 name = "scrapy-influxdb-exporter"
-version = "1.3.0"
+version = "1.4.0"
 description = "Export Scrapy spider stats to InfluxDB."
 readme = "README.md"
 authors = [
@@ -11,8 +11,8 @@ maintainers = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "influxdb3-python==0.10.0",
-    "scrapy==2.12.0",
+    "influxdb3-python>=0.4.0,<1.0.0",
+    "scrapy>=2.10.0,<3.0.0",
 ]
 
 [project.urls]
